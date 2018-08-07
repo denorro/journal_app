@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>Journal</title>
+<th:block th:include="fragments/includes :: includes"></th:block>
+</head>
+<body>
+	<th:block th:include="fragments/navbar :: navbar"></th:block>
+	<div class="container">
+		<div class="row">
+			<div class="col-8">
+				<th:block th:include="fragments/errors :: errors"></th:block>
+				<th:block th:include="fragments/messages :: messages"></th:block>
+				<div class="page-header">
+					<h1>Recent Users...</h1>
+				</div>
+				<hr noshade />
+				<div class="row">
+					<div class="col-xs-12 col-md-6 col-lg-4 col-xl-3"
+						th:each="user : ${users}">
+						<div class="card">
+							<a th:href="@{${'/user/' + user.id}}"> <img
+								class="card-img-top img-fluid" th:src="@{${user.image}}"
+								alt="User Image..." style="height: 250px; width: 100%;" />
+							</a>
+							<div class="card-body">
+								<a th:href="@{${'/user/' + user.id}}">
+									<p class="card-title text-center" th:text="${'@' + user.username}">Username</p>
+								</a>
+								<p class="card-text text-center"
+									th:text="${#sets.size(user.journals)} + ' Journals'">0
+									Journals</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br /> <br />
+				<div class="page-header">
+					<h1>Recent Journals...</h1>
+				</div>
+				<hr noshade />
+				<div class="row">
+					<div class="col-xs-12 col-md-6 col-lg-4 col-xl-3"
+						th:each="journal : ${journals}">
+						<div class="card">
+							<a th:href="@{${'/user/' + journal.user.id}}"> <img
+								class="card-img-top img-fluid" th:src="@{${journal.user.image}}"
+								alt="Journal Image..." style="height: 250px; width: 100%;" />
+							</a>
+							<div class="card-body">
+								<a th:href="@{${'/journals/' + journal.id}}">
+									<p class="card-title text-center" th:text="${journal.title}">Journal
+										Title</p>
+								</a>
+								<p class="card-text text-center"
+									th:text="${'@' + journal.user.username}">Journal User</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-4" sec:authorize="isAuthenticated()">
+				<th:block th:include="fragments/popchat :: popchat"></th:block>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+</body>
+</html>

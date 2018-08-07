@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>My Account</title>
+<th:block th:include="fragments/includes :: includes"></th:block>
+</head>
+<body>
+	<th:block th:include="fragments/navbar :: navbar"></th:block>
+	<div class="container">
+		<th:block th:include="fragments/errors :: errors"></th:block>
+		<th:block th:include="fragments/messages :: messages"></th:block>
+
+		<div class="row text-center ">
+			<div class="col-xs-12 col-lg-8">
+				<div class="card">
+					<img class="card-img-top" th:src="@{${user.image}}" alt="User Image..." style="height:100%; width:auto;"/>
+					<div class="card-body">
+						<h4 class="card-title" th:text="${'@' + user.username}">Username</h4>
+						<p class="card-text" th:text="${'Member Since: ' + user.created}">Member	Since</p>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-center" th:text="${user.firstName + ' ' + user.lastName}">First Name Last Name</li>
+						<li class="list-group-item justify-content-center" th:text="${user.city + ' ' + user.state}">Location</li> 
+					</ul>
+					<div class="card-body">
+						<a href="#" class="card-link">Change Password</a> <a href="#"
+							class="card-link">Change Profile Image</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+</body>
+</html>

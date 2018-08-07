@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>New Journal</title>
+		<th:block th:include="fragments/includes :: includes"></th:block>
+	</head>
+<body>
+	<th:block th:include="fragments/navbar :: navbar"></th:block>
+	<div class="container">
+		<th:block th:include="fragments/errors :: errors"></th:block>
+		<th:block th:include="fragments/messages :: messages"></th:block>
+		<form th:action="@{/journals/new}" method="post" th:object="${journal}" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Upload New Journal</legend>
+				<div class="form-group">
+					<input type="text" class="form-control" th:field="*{title}" placeholder="Title..." required="required"/>
+				</div>
+				<div class="form-group">
+					<textarea rows="5" class="form-control" th:field="*{summary}" placeholder="Summary..." required="required"></textarea>
+				</div>
+				<div class="form-group">
+					<input type="file" class="form-control" name="pics"/>
+				</div>
+				<div class="form-group" id="upload-another-file-div">
+					<button type="button" id="upload-extra-file-btn" class="btn btn-info">
+						<i class="fa fa-plus" aria-hidden="true"></i><span> Upload another File?</span>
+					</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" id="" class="btn btn-success">Submit</button>
+					<button type="reset" id="" class="btn btn-warning">Cancel</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+</body>
+</html>

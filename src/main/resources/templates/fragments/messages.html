@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div th:fragment="messages">
+			<div class="alert alert-success" role="alert" th:each="message : ${messages}" th:text="${message}"></div>
+		</div>
+	</body>
+</html>

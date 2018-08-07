@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="js_scripts">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+			integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+			integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+			crossorigin="anonymous"></script>
+		<script src="https://use.fontawesome.com/65e2ede0a0.js"></script>
+		<script type="text/javascript" src="/static/js/site.js"
+			th:src="@{/js/site.js}"></script>
+			<script type="text/javascript" src="/static/js/popchat.js"
+			th:src="@{/js/popchat.js}"></script>
+	</div>
+</body>
+</html>

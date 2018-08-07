@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title th:text="'Journal ' + ${journal.id}">Journal</title>
+		<th:block th:include="fragments/includes :: includes"></th:block>
+	</head>
+<body>
+	<th:block th:include="fragments/navbar :: navbar"></th:block>
+	<div class="container">
+		<th:block th:include="fragments/errors :: errors"></th:block>
+		<th:block th:include="fragments/messages :: messages"></th:block>
+		<div class="page-header">
+			<h1 th:text="${journal.title}">Journal</h1>
+		</div>
+		<hr noshade />
+		<div class="row no-gutters">
+			<div class="col">
+				<div class="form-group">
+					<img th:src="@{${journal.user.image}}" style="width:75px;height:75px;" alt="..." class="img-thumbnail">		
+					<textarea class="form-control" rows="7" th:text="${journal.summary}" readonly="readonly" ></textarea>
+				</div>
+			</div>	
+		</div>		
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-lg"  th:each="pic : ${journal.photos}">
+				<figure class="figure">
+  					<img th:src="@{'/images/journal/' + ${journal.id} + '/' + ${pic} }" 
+  						 class="figure-img img-fluid rounded journal-image" 
+  						 alt="A generic square placeholder image with rounded corners in a figure.">
+  					<figcaption class="figure-caption">A caption for the above image.</figcaption>
+				</figure>
+			</div>
+		</div>		
+		<div th:if="${editable == true}">
+			<a th:href="@{${'/journals/edit' + journal.id}}" class="btn btn-outline-warning btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span> Edit</span></a>
+			<a th:href="@{${'/journals/delete' + journal.id}}" class="btn btn-outline-danger btn-block"><i class="fa fa-trash-o" aria-hidden="true"></i><span> Delete</span></a>
+		</div>
+	</div>
+	<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+</body>
+</html>

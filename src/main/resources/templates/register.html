@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="utf-8" />
+		<title>Register</title>
+		<th:block th:include="fragments/includes :: includes"></th:block>
+	</head>
+	<body>
+		<th:block th:include="fragments/navbar :: navbar"></th:block>
+		<div class="container">
+			<th:block th:include="fragments/errors :: errors"></th:block>
+			<th:block th:include="fragments/messages :: messages"></th:block>
+			<div class="page-header">
+				<h1>Registration</h1>
+			</div>
+			<hr noshade/>
+			<form th:object="${user}" th:action="@{/registration}" method="post" enctype="multipart/form-data">
+			<fieldset>
+			<div class="form-group">
+				<input type="text" class="form-control" th:field="*{username}" placeholder="Username..." required/>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" th:field="*{email}" placeholder="Email..." required/>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="register_password" th:field="*{password}" placeholder="Password..." required/>
+				<span id="password-error-message" class="error-message">Password and confirmation password must match!</span>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="register_confirm_password" placeholder="Confirm Password..." required/>
+				<span id="confirm-password-error-message" class="error-message">Password and confirmation password must match!</span>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name..." />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name..." />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" th:field="*{city}" placeholder="City..." />
+			</div>
+			<div class="form-group">
+				<select class="form-control" th:field="*{state}">
+					<option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="file" class="form-control" name="profile_image" />
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-lg-1">
+						<button type="submit" id="register-submit" class="btn btn-dark">Submit</button>
+					</div>
+					<div class="col-xs-2 col-sm-2 col-lg-1">
+						<button type="reset" class="btn btn-warning">Reset</button>
+					</div>
+				</div>								
+			</div>
+			</fieldset>
+		</form>
+		</div>
+		<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+	</body>
+</html>

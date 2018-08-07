@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Chatr Privately</title>
+	<th:block th:include="fragments/includes :: includes"></th:block>
+</head>
+<body>
+	<th:block th:include="fragments/navbar :: navbar"></th:block>
+	<div class="container">
+		<th:block th:include="fragments/errors :: errors"></th:block>
+		<th:block th:include="fragments/messages :: messages"></th:block>
+		<div class="page-header">
+			<h1>Private Chatr</h1>
+		</div>
+		<hr noshade />
+		<div class="row">
+			<div class="col-md-9">
+				<div class="form-group">
+					<textarea id="messageList" rows="20" cols="10" class="form-control" readonly="readonly"></textarea>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<!-- <select id="activeUserList" class="form-control" size=10 multiple>
+					<option th:each="user : ${users}" th:text="${user.username}" th:value="${user.username}">User 1</option>
+				</select> -->
+				<div style="height:400px;overflow-y:auto">
+					<div th:each="user : ${users}" th:value="${user.username}" style="margin-bottom:5px">
+						<img th:src="@{${user.image}}" style="height:35px; width:35px;border-radius:5px" />
+						<a th:id="${user.username}" th:href="@{${user.username}}" th:text="${user.username}" style="color:white">User</a>
+					</div>
+				</div>					
+			</div>
+		</div>	
+		<div class="form-group">
+			<textarea id="currentUserMessage" rows="3" cols="3" class="form-control" autofocus></textarea>
+		</div>	
+		<button id="sendMessageBtn" type="button" class="btn btn-success btn-block">Submit Message</button>
+	</div>
+	<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+	<script type="text/javascript" src="/static/js/private.js"	th:src="@{/js/private.js}"></script>
+</body>
+</html>

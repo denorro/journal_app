@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<title>Insert title here</title>
+</head>
+<body th:fragment="popchat">
+	<div class="page-header">
+		<h1>Active Users</h1>
+	</div>
+	<hr noshade />
+	<div class="chat-sidebar">	
+		<div style="height:400px;overflow-y:auto">
+			<div th:each="user : ${users}" style="margin-bottom:5px" class="sidebar-name">
+				<img th:src="@{${user.image}}" style="height:35px; width:35px;border-radius:5px" />
+				<a th:id="${user.username}" th:onclick="'javascript:register_popup(\'' + ${user.username} + '\');'" th:text="${user.username}" style="color:white">User</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

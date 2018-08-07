@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Journal List</title>
+	<th:block th:include="fragments/includes :: includes"></th:block>
+</head>
+<body>
+	<th:block th:include="fragments/navbar :: navbar"></th:block>
+	<div class="container">
+		<th:block th:include="fragments/errors :: errors"></th:block>
+		<th:block th:include="fragments/messages :: messages"></th:block>
+		<div class="page-header">
+			<h1>Recent Journals</h1>
+		</div>
+		<hr noshade/>
+		<div>
+			<ul class="timeline">
+				<div th:each="entry,status : ${journals}">
+					<li th:attr="class=${status.odd}?'timeline-inverted':''">
+						<div class="tl-circ"></div>
+						<div class="timeline-panel">
+							<div class="tl-heading">
+								<h4>
+									<a th:href="@{'/journals/' + ${entry.id}}">
+										<span th:text="${entry.title}">TITLE</span>
+									</a>									
+								</h4>
+								<p>
+									<small class="text-muted">
+										<!-- <i class="fa fa-user-circle" aria-hidden="true"></i> -->
+										<img th:src="@{${entry.user.image}}" alt="User Image" class="img-fluid profile-thumbnail"/>
+										<span th:text="${entry.user.username}">Username</span>
+										<br/>
+										<i class="fa fa-clock-o" aria-hidden="true"></i>
+										<span th:text="${'Submitted: ' + entry.created}">CREATED</span>
+									</small>
+								</p>
+							</div>
+							<div class="tl-body">
+								<p>
+									<span th:text="${entry.summary}">SUMMARY</span>
+								</p>
+							</div>
+						</div>
+					</li>
+				</div>
+			</ul>
+		</div>
+	</div>
+	<th:block th:include="fragments/js_scripts :: js_scripts"></th:block>
+</body>
+</html>
